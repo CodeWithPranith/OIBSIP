@@ -1,0 +1,30 @@
+* { box-sizing: border-box; }
+body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; background: #f1f3f6; color: #1d2733; }
+.card { max-width: 380px; margin: 8vh auto; background: #fff; padding: 28px; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.1); }
+.card form { display: flex; flex-direction: column; gap: 12px; }
+label { display: flex; flex-direction: column; font-size: 14px; gap: 4px; }
+input { padding: 9px; border: 1px solid #b8c0cc; border-radius: 6px; font-size: 15px; }
+button { padding: 9px 14px; border: 0; border-radius: 6px; background: #2563eb; color: #fff; font-size: 14px; cursor: pointer; }
+button:hover { background: #1d4ed8; }
+.error { color: #b91c1c; background: #fee2e2; padding: 8px 10px; border-radius: 6px; font-size: 14px; }
+.chat-page { display: flex; height: 100vh; }
+.sidebar { width: 240px; background: #1e293b; color: #e2e8f0; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.sidebar h2 { margin: 0 0 4px; font-size: 16px; }
+#room-list { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; }
+#room-list li button { width: 100%; text-align: left; background: transparent; color: #cbd5e1; margin-bottom: 2px; }
+#room-list li button.active { background: #2563eb; color: #fff; }
+#new-room-form { display: flex; gap: 6px; }
+#new-room-form input { flex: 1; min-width: 0; }
+.user-box { font-size: 13px; display: flex; flex-direction: column; gap: 6px; }
+.chat-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.chat-main header { padding: 12px 18px; background: #fff; border-bottom: 1px solid #d5dbe3; }
+.chat-main header h2 { margin: 0; font-size: 18px; }
+#messages { list-style: none; margin: 0; padding: 14px 18px; overflow-y: auto; flex: 1; }
+#messages li { margin-bottom: 8px; word-wrap: break-word; }
+#messages .time { color: #64748b; font-size: 12px; margin-right: 6px; }
+#messages .author { font-weight: 600; margin-right: 6px; }
+#messages .mine .author { color: #2563eb; }
+#messages .system { color: #64748b; font-style: italic; font-size: 14px; }
+#message-form { display: flex; gap: 8px; padding: 12px 18px; background: #fff; border-top: 1px solid #d5dbe3; }
+#message-form input { flex: 1; }
+@media (max-width: 640px) { .sidebar { width: 150px; } }
