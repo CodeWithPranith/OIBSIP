@@ -24,7 +24,45 @@
     <button type="submit">Send</button>
   </form>
 </main>
-<!-- Socket.IO browser client (needs an internet connection to load) -->
-<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-<script src="{{ url_for('static', filename='chat.js') }}"></script>
+<!-- Load the Socket.IO browser client with CDN fallbacks. -->
+<script>
+(function () {
+  const sources = [
+    "https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js",
+    "https://cdn.jsdelivr.net/npm/socket.io-client@4.7.5/dist/socket.io.min.js",
+    "https://unpkg.com/socket.io-client@4.7.5/dist/socket.io.min.js"
+  ];
+  const status = document.getElementById("room-title");
+
+  function loadSource(index) {
+    if (index >= sources.length) {
+      status.textContent = "Chat client failed to load";
+      const error = document.getElementById("error-bar");
+      error.textContent = "Could not load the Socket.IO client. Check your internet connection or CDN access, then refresh.";
+      error.hidden = false;
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = sources[index];
+    script.onload = function () {
+      if (typeof window.io === "function") {
+        const chatScript = document.createElement("script");
+        chatScript.src = "{{ url_for('static', filename='chat.js') }}";
+        document.body.appendChild(chatScript);
+      } else {
+        script.remove();
+        loadSource(index + 1);
+      }
+    };
+    script.onerror = function () {
+      script.remove();
+      loadSource(index + 1);
+    };
+    document.head.appendChild(script);
+  }
+
+  loadSource(0);
+})();
+</script>
 {% endblock %}

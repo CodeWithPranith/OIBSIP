@@ -72,7 +72,7 @@ python3 run_web.py
 ```
 Open <http://127.0.0.1:5001> in your browser, register, and chat. To test with two users, open a second browser or a private window and register another account. Stop the server with `Ctrl+C`.
 Port 5001 is used because macOS AirPlay Receiver often occupies port 5000.
-The page loads the Socket.IO JavaScript library from a CDN, so an internet connection is needed.
+The page loads the Socket.IO JavaScript library from a CDN, trying multiple providers if one is unreachable. An internet connection is still needed for the browser client.
 
 ### Beginner socket chat (three Terminal windows)
 ```bash
